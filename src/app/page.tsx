@@ -1,3 +1,7 @@
 export default function Home() {
-  return <div className="text-purple-400">Hello World</div>;
+  return (
+    <div className="w-full text-5xl flex justify-center items-center">
+      Home Page
+    </div>
+  );
 }
