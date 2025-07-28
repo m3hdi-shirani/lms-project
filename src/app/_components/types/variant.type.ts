@@ -7,4 +7,5 @@ export type Variant =
   | "warning"
   | "error"
   | "ghost"
+  | "link"
   | "info";
