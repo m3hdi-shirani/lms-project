@@ -53,6 +53,7 @@ const config: Config = {
     colors: tailwindColors,
     extend: {},
   },
+  darkMode: "class",
   plugins: [],
 };
 export default config;
