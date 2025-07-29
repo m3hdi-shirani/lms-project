@@ -243,3 +243,25 @@ export const IconButton: Story = {
     </>
   ),
 };
+
+export const ButtonWithLoading: Story = {
+  render: () => (
+    <>
+      <Button variant="neutral" isLoading={true} loadingText="Loading"></Button>
+      <Button
+        variant="neutral"
+        isLoading={true}
+        loadingType={"ring"}
+        loadingText="Loading"
+      ></Button>
+      <Button variant="primary" isLoading={true} loadingText="Loading"></Button>
+      <Button
+        variant="accent"
+        isOutline
+        isLoading={true}
+        loadingType={"ring"}
+        loadingText="Loading"
+      ></Button>
+    </>
+  ),
+};
