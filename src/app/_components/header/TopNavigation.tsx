@@ -1,5 +1,5 @@
 "use client";
-import { NavigationMenuItem } from "@/types/NavigationMenuItem";
+import { NavigationMenuItem } from "@/types/navigation-menuItem";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
