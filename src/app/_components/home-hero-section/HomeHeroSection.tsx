@@ -1,5 +1,6 @@
 import { Button } from "../button";
 import Image from "next/image";
+import { IconArrowLeftFill } from "../icons/icons";
 
 const HomeHeroSection: React.FC = () => {
   return (
@@ -20,6 +21,7 @@ const HomeHeroSection: React.FC = () => {
           <div className="mt-5 flex flex-col xl:flex-row gap-4">
             <Button variant="primary" size="large">
               دورهای نکست و ری اکت
+              <IconArrowLeftFill fill="currentColor" />
             </Button>
             <Button variant="neutral" size="large">
               مشاوره برنامه نویسی
