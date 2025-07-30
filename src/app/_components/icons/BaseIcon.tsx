@@ -1,5 +1,5 @@
 "use client";
-import React, { FC, SVGAttributes } from "react";
+import { FC } from "react";
 import { SvgIcon } from "./icon.types";
 
 // eslint-disable-next-line react/display-name
