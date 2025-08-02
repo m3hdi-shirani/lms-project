@@ -1,14 +1,15 @@
 // import { CourseSummary } from "@/types/course-summery.interface";
-import HomeHeroSection from "./_components/home-hero-section/HomeHeroSection";
-import CourseCardList from "./(courses)/_components/CourseCardList";
-import { homeFeatures } from "@/data/home-feature";
-import Feature from "./_components/feature/Feature";
-import { Button } from "./_components/button";
-import { IconArrowLeftFill } from "./_components/icons/icons";
-import { BlogPostSummery } from "@/types/blog-post-summery.interface";
-import BlogPostCardList from "./(blog)/_components/blogPostCardList";
 import { API_URL } from "@/configs/global";
+import { homeFeatures } from "@/data/home-feature";
+import { BlogPostSummery } from "@/types/blog-post-summery.interface";
 import { Suspense } from "react";
+import BlogPostCardList from "./(blog)/_components/blogPostCardList";
+import CourseCardList from "./(courses)/_components/CourseCardList";
+import { Button } from "./_components/button";
+import Feature from "./_components/feature/Feature";
+import HomeHeroSection from "./_components/home-hero-section/HomeHeroSection";
+import { IconArrowLeftFill } from "./_components/icons/icons";
+import { CardPlaceholder } from "./_components/placeholders";
 
 async function getNewestPosts(count: number): Promise<BlogPostSummery[]> {
   const response = await fetch(`${API_URL}/blog/newest/${count}`);
@@ -38,7 +39,7 @@ export default async function Home() {
             برای به‌روز موندن، یاد گرفتن نکته‌های تازه ضروری‌ه!
           </p>
         </div>
-        <Suspense fallback={<div>در حال دریافت اطلاعات ....</div>}>
+        <Suspense fallback={<CardPlaceholder count={4} className="mt-5" />}>
           <CourseCardList courses={[]} />
         </Suspense>
       </section>
