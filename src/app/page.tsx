@@ -7,18 +7,15 @@ import { Button } from "./_components/button";
 import { IconArrowLeftFill } from "./_components/icons/icons";
 import { BlogPostSummery } from "@/types/blog-post-summery.interface";
 import BlogPostCardList from "./(blog)/_components/blogPostCardList";
+import { API_URL } from "@/configs/global";
 
 async function getNewestCourses(count: number): Promise<CourseSummary[]> {
-  const response = await fetch(
-    `https://api.classbon.com/api/courses/newest/${count}`
-  );
+  const response = await fetch(`${API_URL}/courses/newest/${count}`);
   return response.json();
 }
 
 async function getNewestPosts(count: number): Promise<BlogPostSummery[]> {
-  const response = await fetch(
-    `https://api.classbon.com/api/blog/newest/${count}`
-  );
+  const response = await fetch(`${API_URL}/blog/newest/${count}`);
   return response.json();
 }
 
