@@ -1,5 +1,4 @@
 import { Accordion } from "@/app/_components/accordion";
-import { Rating } from "@/app/_components/rating";
 import { Tabs } from "@/app/_components/tabs";
 import { API_URL } from "@/configs/global";
 import { Accordion as AccordionType } from "@/types/accordion.type";
@@ -63,7 +62,6 @@ const CourseDetailsPage = async ({ params }: { params: { slug: string } }) => {
         <div className=" mt-5">Video Player Component</div>
       </div>
       <div className="col-span-10 xl:col-span-3">
-        <Rating rate={3} />
         <CourseAside {...courseData} />
       </div>
       <div className="col-span-10 xl:col-span-6 ">
