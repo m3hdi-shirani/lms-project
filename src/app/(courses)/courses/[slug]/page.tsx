@@ -1,6 +1,8 @@
+import { Accordion } from "@/app/_components/accordion";
 import { Rating } from "@/app/_components/rating";
 import { Tabs } from "@/app/_components/tabs";
 import { API_URL } from "@/configs/global";
+import { Accordion as AccordionType } from "@/types/accordion.type";
 import { CourseDetails } from "@/types/course-details.interface";
 import { Tab } from "@/types/tab.types";
 import CourseAside from "./_components/course-aside/CourseAside";
@@ -24,6 +26,14 @@ const CourseDetailsPage = async ({ params }: { params: { slug: string } }) => {
   const { slug } = params;
   const courseData = await getCourse(slug);
 
+  const faqs: AccordionType[] = courseData.frequentlyAskedQuestions.map(
+    (faq) => ({
+      id: faq.id,
+      title: faq.question,
+      content: faq.answer,
+    })
+  );
+
   const tabs: Tab[] = [
     {
       label: "مشخصات دوره",
@@ -35,7 +45,7 @@ const CourseDetailsPage = async ({ params }: { params: { slug: string } }) => {
     },
     {
       label: "سوالات متداول",
-      content: "accordion components",
+      content: <Accordion data={faqs} />,
     },
   ];
 
