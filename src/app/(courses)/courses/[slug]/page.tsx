@@ -1,4 +1,4 @@
-import Rating from "@/app/_components/rating/Rating";
+import { Rating } from "@/app/_components/rating";
 import { API_URL } from "@/configs/global";
 import { CourseDetails } from "@/types/course-details.interface";
 
