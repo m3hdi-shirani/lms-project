@@ -1,3 +1,4 @@
+import { Progress } from "@/app/_components/progress";
 import { Rating } from "@/app/_components/rating";
 import { API_URL } from "@/configs/global";
 import { CourseDetails } from "@/types/course-details.interface";
@@ -20,7 +21,6 @@ async function getCourse(slug: string): Promise<CourseDetails> {
 const CourseDetailsPage = async ({ params }: { params: { slug: string } }) => {
   const { slug } = params;
   const courseData = await getCourse(slug);
-  console.log(courseData);
   return (
     <div className="h-96 container grid grid-cols-10 grid-rows-[1fr 1fr] gap-10 py-10">
       <div className="bg-primary pointer-events-none absolute right-0 aspect-square w-1/2 rounded-full opacity-10 blur-3xl"></div>
@@ -36,6 +36,9 @@ const CourseDetailsPage = async ({ params }: { params: { slug: string } }) => {
       </div>
       <div className="col-span-10 xl:col-span-3">
         <Rating rate={3} />
+        <Progress value={50} />
+        <Progress value={75} variant="primary" size="large" />
+        <Progress value={50} variant="secondary" size="tiny" />
       </div>
       <div className="col-span-10 xl:col-span-6 bg-info"></div>
       <div className="col-span-10 xl:col-span-4 bg-warning"></div>
