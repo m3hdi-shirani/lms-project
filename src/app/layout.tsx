@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { Header } from "./_components/header";
 import { Footer } from "./_components/footer";
+import ReactQueryProvider from "@/providers/ReactQueryProvider";
 
 const figtree = Figtree({
   subsets: ["latin"],
@@ -54,9 +55,11 @@ export default function RootLayout({
       className={`dark ${figtree.variable} ${iranyekan.variable}`}
     >
       <body className="min-h-screen grid grid-rows-[80px_1fr_auto] bg-white text-base-100 dark:bg-base-100 dark:text-base-content">
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <ReactQueryProvider>
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </ReactQueryProvider>
       </body>
     </html>
   );
