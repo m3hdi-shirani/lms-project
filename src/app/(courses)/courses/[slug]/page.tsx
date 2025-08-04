@@ -5,6 +5,7 @@ import { Accordion as AccordionType } from "@/types/accordion.type";
 import { CourseDetails } from "@/types/course-details.interface";
 import { Tab } from "@/types/tab.types";
 import CourseAside from "./_components/course-aside/CourseAside";
+import CourseComment from "./_components/comments/CourseComment";
 
 export async function generateStaticParams() {
   const slugs = await fetch(`${API_URL}/courses/slugs`).then((res) =>
@@ -40,7 +41,7 @@ const CourseDetailsPage = async ({ params }: { params: { slug: string } }) => {
     },
     {
       label: "دیدگاه‌ها و پرسش",
-      content: "course comments",
+      content: <CourseComment />,
     },
     {
       label: "سوالات متداول",

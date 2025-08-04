@@ -1,26 +1,11 @@
 import { API_URL } from "@/configs/global";
-import {
-  BadRequestError,
-  NetworkError,
-  NotFoundError,
-  UnauthorizedError,
-  UnhandledException,
-  ValidationError,
-} from "@/types/http-errors.interface";
+import { ApiError } from "@/types/http-errors.interface";
 import axios, {
   AxiosRequestConfig,
   AxiosRequestHeaders,
   AxiosResponse,
 } from "axios";
-
-// API error types
-type ApiError =
-  | BadRequestError
-  | ValidationError
-  | UnauthorizedError
-  | NotFoundError
-  | UnhandledException
-  | NetworkError;
+import { errorHandler, networkErrorStrategy } from "./http-error-strategies";
 
 /**
  * Axios instance for HTTP requests
@@ -40,44 +25,10 @@ httpService.interceptors.response.use(
       const statusCode = error.response?.status;
       if (statusCode >= 400) {
         const errorData: ApiError = error.response?.data;
-
-        if (statusCode === 400 && !errorData.errors) {
-          throw {
-            ...errorData,
-          } as BadRequestError;
-        }
-
-        if (statusCode === 400 && errorData.errors) {
-          throw {
-            ...errorData,
-          } as ValidationError;
-        }
-
-        if (statusCode === 404) {
-          throw {
-            ...errorData,
-            detail: "سرویس مورد نظر یافت نشد.",
-          } as NotFoundError;
-        }
-
-        if (statusCode === 403) {
-          throw {
-            ...errorData,
-            detail: "دسترسی به این سرویس مجاز نیست.",
-          } as UnauthorizedError;
-        }
-
-        if (statusCode >= 500) {
-          throw {
-            ...errorData,
-            detail: "خطای سرور.",
-          } as UnhandledException;
-        }
-      } else {
-        throw {
-          detail: "خطای شبکه.",
-        } as NetworkError;
+        errorHandler[statusCode](errorData);
       }
+    } else {
+      networkErrorStrategy();
     }
   }
 );
@@ -140,4 +91,4 @@ async function deleteData(
   return await apiBase(url, options);
 }
 
-export { readData, createData, updateData, deleteData };
+export { createData, deleteData, readData, updateData };
