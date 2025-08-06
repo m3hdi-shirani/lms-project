@@ -8,6 +8,7 @@ import { useParams } from "next/navigation";
 import { Fragment, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { useCourseComments } from "../../_api/get-comments";
+import { Alert } from "@/app/_components/alert";
 
 const CourseComments = () => {
   const { ref, inView } = useInView({});
@@ -36,7 +37,7 @@ const CourseComments = () => {
   if (error) {
     return (
       <>
-        <p>خطا در برقراری ارتباط با سرور</p>
+        <Alert variant="error">خطا در برقراری ارتباط با سرور</Alert>
         <div className="text-center mt-3">
           <Button
             variant="neutral"
