@@ -32,7 +32,7 @@ const CourseCard: React.FC<CourseCardProps> = ({
         <Badge variant="accent">{level}</Badge>
       </div>
       <div className="card-body">
-        <Link href={`/course/${slug}`}>{title}</Link>
+        <Link href={`/courses/${slug}`}>{title}</Link>
         <p>{subTitle}</p>
         <div className="flex items-center justify-between mt-3">
           <Badge variant="warning">
