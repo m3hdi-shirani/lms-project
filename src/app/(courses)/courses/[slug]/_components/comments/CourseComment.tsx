@@ -1,13 +1,25 @@
 "use client";
 
-import { useEffect } from "react";
+import { useParams } from "next/navigation";
+import { useCourseComments } from "../../_api/get-comments";
+import { Comment } from "@/app/_components/comment";
 
 const CourseComment = () => {
-  useEffect(() => {
-    // Fetch comments or perform any side effects here
-  }, []);
+  const { slug } = useParams();
+  const { data: commants } = useCourseComments({
+    params: {
+      slug: slug as string,
+      page: 1,
+    },
+  });
 
-  return <div>CourseComment</div>;
+  return (
+    <>
+      {commants?.data.map((comment) => (
+        <Comment key={`comment-${comment.id}`} {...comment} variant="info" />
+      ))}
+    </>
+  );
 };
 
 export default CourseComment;
