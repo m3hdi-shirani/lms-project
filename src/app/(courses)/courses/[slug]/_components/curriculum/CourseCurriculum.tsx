@@ -27,7 +27,7 @@ const CourseCurriculum: React.FC<CourseCurriculumProps> = ({ data }) => {
                 {index}
               </span>
               <span className="ml-auto">{chapter.title}</span>
-              <div className="flex gap-2 ml-3">
+              <div className="hidden md:flex gap-2 ml-3">
                 <Badge variant="info">{chapter.numOfLectures} مبحث </Badge>
                 <Badge variant="accent">{chapter.duration} </Badge>
               </div>
@@ -50,7 +50,7 @@ const CourseCurriculum: React.FC<CourseCurriculumProps> = ({ data }) => {
                     className="py-5 border-b border-base-content/10 ml-4 border-dashed last-of-type:border-0"
                     key={`lecture${lecture.title}`}
                   >
-                    <span className="absolute flex items-center justify-center w-4 h-4 bg-blue-100 rounded-full -right-2  bg-primary/30"></span>
+                    <span className="absolute flex items-center justify-center w-4 h-4 bg-blue-100 rounded-full -right-2 bg-primary/30"></span>
 
                     <h3 className="text-base font-semibold text-gray-900 flex items-center justify-between">
                       {lecture.title}
