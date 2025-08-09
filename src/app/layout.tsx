@@ -4,6 +4,7 @@ import "./globals.css";
 import { Header } from "./_components/header";
 import { Footer } from "./_components/footer";
 import ReactQueryProvider from "@/providers/ReactQueryProvider";
+import NextTopLoader from "nextjs-toploader";
 
 const figtree = Figtree({
   subsets: ["latin"],
@@ -55,6 +56,7 @@ export default function RootLayout({
       className={`dark ${figtree.variable} ${iranyekan.variable}`}
     >
       <body className="min-h-screen grid grid-rows-[80px_1fr_auto] bg-white text-base-100 dark:bg-base-100 dark:text-base-content">
+        <NextTopLoader showSpinner={false} color="var(--color-primary)" />
         <ReactQueryProvider>
           <Header />
           <main>{children}</main>
