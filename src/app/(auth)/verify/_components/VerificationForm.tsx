@@ -1,15 +1,43 @@
+"use client";
+
+import { AuthCodeRef } from "@/app/_components/auth-code/auth-code.types";
+import AuthCode from "@/app/_components/auth-code/AuthCode";
 import { Button } from "@/app/_components/button";
+import Timer from "@/app/_components/timer/Timer";
 import Link from "next/link";
+import { useRef } from "react";
+
+const getTwoMinutesFromNow = () => {
+  const time = new Date();
+  time.setSeconds(time.getSeconds() + 120);
+  return time;
+};
 
 const VerificationForm = () => {
+  const authCodeRef = useRef<AuthCodeRef>(null);
   return (
     <>
       <h5 className="text-2xl">کد تایید</h5>
       <p className="mt-2">دنیای شگفت انگیز برنامه نویسی در انتظار شماست!</p>
       <form className="flex flex-col gap-6 mt-10 flex-1">
-        <p>Auth code</p>
-        Timer
-        <Button isLink={true}>ارسال مجدد کد تایید</Button>
+        <AuthCode
+          className="mt-10"
+          ref={authCodeRef}
+          onChange={(value) => {
+            console.log(value);
+            //set value
+          }}
+        />
+        <Timer
+          className="my-8"
+          size="small"
+          expiryTimestamp={getTwoMinutesFromNow()}
+          showDays={false}
+          showHours={false}
+        />
+        <Button isLink={true} onClick={() => authCodeRef.current?.clear()}>
+          ارسال مجدد کد تایید
+        </Button>
         <Button type="submit" variant="primary">
           تایید و ادامه
         </Button>
