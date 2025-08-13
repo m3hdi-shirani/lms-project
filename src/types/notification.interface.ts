@@ -1,6 +1,6 @@
 export interface Notification {
   id: string;
-  duration?: number;
+  duration: number;
   message: string;
   type: NotificationType;
 }
