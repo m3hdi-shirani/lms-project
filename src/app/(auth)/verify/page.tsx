@@ -1,12 +1,8 @@
 import Link from "next/link";
+import VerificationForm from "./_components/VerificationForm";
 
 const VerifyPage = () => {
-  return (
-    <div className="w-full text-5xl flex flex-col justify-center items-center">
-      <h1>This is verify page</h1>
-      <Link href="/signin">Go to signin page</Link>
-    </div>
-  );
+  return <VerificationForm />;
 };
 
 export default VerifyPage;
