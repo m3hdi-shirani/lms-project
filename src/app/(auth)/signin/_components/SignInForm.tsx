@@ -1,11 +1,12 @@
 "use client";
 
 import { Button } from "@/app/_components/button";
-import { useForm } from "react-hook-form";
-import { SignIn } from "../_types/signin.types";
 import { TextInput } from "@/app/_components/form-input/text-input";
-import { useSignIn } from "../_api/sigin";
+import { useNotificationStore } from "@/store/notification.store";
 import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+import { useSignIn } from "../_api/sigin";
+import { SignIn } from "../_types/signin.types";
 
 const SignInForm = () => {
   const {
@@ -17,8 +18,19 @@ const SignInForm = () => {
 
   const router = useRouter();
 
+  const showNotification = useNotificationStore(
+    (state) => state.showNotification
+  );
+
   const signIn = useSignIn({
-    onSuccess: () => router.push(`/verify?mobile=${getValues("mobile")}`),
+    onSuccess: () => {
+      router.push(`/verify?mobile=${getValues("mobile")}`);
+      showNotification({
+        message: "کد تایید به شماره شما ارسال شد",
+        type: "info",
+        duration: 5000,
+      });
+    },
   });
 
   const onSubmit = (data: SignIn) => {
